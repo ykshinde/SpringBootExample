@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      http://maven.apache.org/xsd/settings-1.0.0.xsd">
+                      
+   <profiles>
+  	
+  	<profile>
+      <id>apache</id>
+      
+      <!-- Here we define the JBoss release and snapshot repos -->
+      <repositories>
+      	
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>apache1</id>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        			
+				<repository>
+					<id>spring-milestones</id>
+					<name>Spring Milestones</name>
+					<url>http://repo.spring.io/milestone</url>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+				
+				<repository>
+					<id>spring-snapshots</id>
+					<name>Spring Snapshots</name>
+					<url>http://repo.spring.io/snapshot</url>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+				
+				
+				
+				<repository>
+					<id>jboss</id>
+					<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>false</enabled>
+					</snapshots>
+				</repository>
+    
+      	
+        
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <id>mvnrepository</id>
+            <url>http://mvnrepository.com/</url>
+        </repository>
+        
+         <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>Spring</id>
+            <url>http://repo.springsource.org/libs-milestone</url>
+        </repository>
+        
+        
+        <repository>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <id>clojars</id>
+            <url>https://clojars.org/repo/</url>
+        </repository>
+        
+        
+      </repositories>
+    </profile>
+  	
+    <profile>
+            <id>sonar</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- Example for MySQL-->
+                <sonar.jdbc.url>
+                  jdbc:mysql://localhost:3306/sonarqube?useUnicode=true&amp;characterEncoding=utf8&amp;rewriteBatchedStatements=true
+                </sonar.jdbc.url>
+                <sonar.jdbc.username>sonar</sonar.jdbc.username>
+                <sonar.jdbc.password>sonar</sonar.jdbc.password>
+ 
+                <!-- Optional URL to server. Default value is http://localhost:9000 -->
+                <sonar.host.url>
+                  http://localhost:9000
+                </sonar.host.url>
+            </properties>
+        </profile>
+    
+  </profiles>
+  
+  <activeProfiles>
+    <!--make the profile active all the time -->
+    <activeProfile>apache</activeProfile>
+  </activeProfiles>
+
+</settings>
+
