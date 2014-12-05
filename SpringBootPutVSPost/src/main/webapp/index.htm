@@ -1,0 +1,126 @@
+<!DOCTYPE unspecified PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<script src="/js/jquery-1.5.1.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		makeAjaxCall();
+	});
+	
+	function makeAjaxCall() {
+		ajaxPut();
+		ajaxGet();
+		ajaxPostOrder();
+	}
+
+	function ajaxPut() {
+		var jsObj = {
+			name : $('#custName').val(),
+			city : $('#custCity').val()
+		};
+		alert(JSON.stringify(jsObj));
+
+		$.ajax({
+			type : "PUT",
+			url : "Customer/"+$('#custId').val()+".json",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(jsObj)
+		}).done(function(data) {
+			$('#msg').html(data);
+		});
+	}
+	
+	function ajaxPost() {
+		var jsObj = {
+			name : $('#custName').val(),
+			city : $('#custCity').val()
+		};
+		alert(JSON.stringify(jsObj));
+
+		$.ajax({
+			type : "POST",
+			url : "Customer/"+$('#custId').val()+".json",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(jsObj)
+		}).done(function(data) {
+			$('#msg').html(data);
+		});
+	}
+	
+	function ajaxPostOrder() {
+		var jsObj = {
+			orderPirce : $('#custOrdPrice').val(),
+			orderDetails : $('#custOrdDetails').val()
+		};
+		alert(JSON.stringify(jsObj));
+
+		$.ajax({
+			type : "POST",
+			url : "Order/"+$('#custId').val()+".json",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify(jsObj)
+		}).done(function(data) {
+			$('#msg').html(data);
+		});
+	}
+	
+	function ajaxGet() {
+		$.ajax({
+			type : "GET",
+			url : "Customer/"+$('#custId').val()+".json",
+			dataType : "json",
+		}).done(function(data) {
+			$('#msg').html(data);
+			
+			$('#custName').val(data.name);
+			$('#custCity').val(data.city);
+		});
+	}
+	
+	function ajaxGetCustOrder() {
+		$.ajax({
+			type : "GET",
+			url : "CustomerOrder/"+$('#custId').val(),
+			dataType : "json",
+		}).done(function(data) {
+			$('#orderListJson').val(JSON.stringify(data));
+		});
+	}
+	
+	
+</script>
+</head>
+<body>
+	<input type="button" name="city" value="Call Ajax Get" onclick="ajaxGet()">
+	<br><br>
+	<input type="button" name="city" value="Call Ajax Put" onclick="ajaxPut()">
+	<br><br>
+	<input type="button" name="city" value="Call Ajax Post" onclick="ajaxPost()">
+	<br><br>
+	<input type="button" name="city" value="Call BOTH Ajax " onclick="makeAjaxCall()">
+	<br><br>
+	
+	<input type="button" name="city" value="Call POST Order " onclick="ajaxPostOrder()">
+	<input type="button" name="city" value="Call GET Order " onclick="ajaxGetCustOrder()">
+	<br><br>
+	
+	ID : <input type="text" name="id" value="1" id="custId">
+	<br>
+	Name : <input type="text" name="name" value="Tingu" id="custName"> 
+	<br>
+	City : <input type="text" name="city" value="Pune" id="custCity">
+	<br>
+	
+	Order Price : <input type="text" name="city" id="custOrdPrice" value="23">
+	<br>
+	Order Details : <input type="text" name="city" id="custOrdDetails" value="Soeui">
+	<br>
+	
+	<input type="text" id="orderListJson">
+	
+	<span id="msg"></span>
+</body>
+</html>
