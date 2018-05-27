@@ -9,7 +9,7 @@
   	<profile>
       <id>apache</id>
       
-      <!-- Here we define the JBoss release and snapshot repos -->
+      <!-- Yogesh Here we define the JBoss release and snapshot repos -->
       <repositories>
       	
         <repository>
